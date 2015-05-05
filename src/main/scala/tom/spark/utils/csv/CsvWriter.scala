@@ -1,4 +1,4 @@
-package tom.spark.utils
+package tom.spark.utils.csv
 
 import org.apache.spark.rdd.RDD
 import java.io.PrintWriter
