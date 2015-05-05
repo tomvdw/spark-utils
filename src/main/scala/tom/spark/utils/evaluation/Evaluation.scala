@@ -1,4 +1,4 @@
-package tom.spark.utils
+package tom.spark.utils.evaluation
 
 import org.apache.spark.mllib.linalg.Vector
 import org.apache.spark.rdd.RDD

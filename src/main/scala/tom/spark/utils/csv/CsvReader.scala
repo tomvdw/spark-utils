@@ -1,7 +1,6 @@
-package tom.spark.utils
+package tom.spark.utils.csv
 
 import org.apache.spark.rdd.RDD
-import org.apache.spark.SparkContext
 
 case class CsvReader(rawData: RDD[String], separator: String = ",") {
 
