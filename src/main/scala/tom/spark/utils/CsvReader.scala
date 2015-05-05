@@ -13,7 +13,7 @@ case class CsvReader(rawData: RDD[String], separator: String = ",") {
     rowValue.apply(0)
   }
   
-  def getHeaders: Array[String] = getHeaderString.split(",")
+  def getHeaders: Array[String] = getHeaderString.split(separator)
   
   def getIndexedDataRows = indexedRawData.filter(_._2 > 0)
   def getDataRows = getIndexedDataRows.map(_._1)
