@@ -12,11 +12,11 @@ class RandomForestEvaluator(
   val featureSubsetStrategy: String = "auto",
   val impurity: String = "gini",
   val maxDepth: Int = 5,
-  val maxBins: Int = 32) extends Evaluator {
+  val maxBins: Int = 32) extends ClassificationEvaluator {
 
-  def evaluate(train: RDD[LabeledPoint], test: RDD[LabeledPoint]): Evaluation = {
+  def evaluate(train: RDD[LabeledPoint], test: RDD[LabeledPoint]): ClassificationEvaluation = {
     val model = trainClassifier(train)
-    Evaluation(model.predict, test)
+    ClassificationEvaluation(model.predict, test)
   }
 
   private def trainClassifier(train: RDD[LabeledPoint]) = {
