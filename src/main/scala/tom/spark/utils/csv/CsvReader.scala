@@ -1,6 +1,7 @@
 package tom.spark.utils.csv
 
 import org.apache.spark.rdd.RDD
+import scala.reflect.ClassTag
 
 case class CsvReader(rawData: RDD[String], separator: String = ",") {
 
@@ -14,6 +15,9 @@ case class CsvReader(rawData: RDD[String], separator: String = ",") {
   
   def getHeaders: Array[String] = getHeaderString.split(separator)
   
-  def getIndexedDataRows = indexedRawData.filter(_._2 > 0)
-  def getDataRows = getIndexedDataRows.map(_._1)
+  def getIndexedDataRows: RDD[(String, Long)] = indexedRawData.filter(_._2 > 0)
+  def getDataRows: RDD[String] = getIndexedDataRows.map(_._1)
+  
+  def parseData[T:ClassTag](f: (String => T)): RDD[T] = getDataRows.map(f(_))
+
 }
